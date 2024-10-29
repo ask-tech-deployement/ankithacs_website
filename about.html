@@ -898,7 +898,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
       const api_url =
-        "http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetallActiveMainCategory";
+        "https://live.asktek.net/Ankita_api/api/GetallActiveMainCategory";
 
       const tokent =
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
@@ -961,7 +961,7 @@
       const getsubmenu = async (id) => {
         await axios
           .get(
-            `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/Getonesub/${id}`,
+            `https://live.asktek.net/Ankita_api/api/Getonesub/${id}`,
             {
               headers: {
                 Authorization: tokent,
@@ -1009,7 +1009,7 @@
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
 
       const api_url2 =
-        "http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetallActiveMainCategory";
+        "https://live.asktek.net/Ankita_api/api/GetallActiveMainCategory";
 
       // Fetch categories and render them in the sidebar
       async function getCategories(url) {
@@ -1049,7 +1049,7 @@
       // Function to fetch subcategories based on category ID
       async function loadSubcategories(categoryId) {
         const response = await axios.get(
-          `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/Getonesub/${categoryId}`,
+          `https://live.asktek.net/Ankita_api/api/Getonesub/${categoryId}`,
           {
             headers: {
               Authorization: tokent2,
