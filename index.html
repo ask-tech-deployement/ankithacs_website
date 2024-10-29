@@ -125,7 +125,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   </head>
   <!-- body -->
-  <body class="main-layout">
+  <body class="main-layout footer_to90 project_page">
     <!-- Toast Notification HTML -->
     <div
       aria-live="polite"
@@ -150,8 +150,8 @@
     </div>
     <!-- end loader -->
 
-    <!-- Top Bar -->
-    <div class="bg-dark text-white py-2">
+     <!-- Top Bar -->
+     <div class="bg-dark text-white py-2">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-12 col-sm-12 text-md-end text-center">
@@ -188,7 +188,6 @@
         </div>
       </div>
     </div>
-
     <header class="sticky-top shadow-bottom-header">
       <!-- Logo and Navigation with Row & Col -->
       <div class="header-bg py-1">
@@ -217,7 +216,9 @@
                       class="img-fluid"
                       style="max-height: 50px"
                     />
-                    <span class="badge badge-dark count-position" id="cartCount"
+                    <span
+                      class="badge badge-dark count-position2"
+                      id="cartCount"
                       >0</span
                     >
                   </div>
@@ -368,7 +369,6 @@
         </div>
       </div>
     </header>
-
     <!-- image courasel -->
     <div
       id="carouselExampleCaptions"
@@ -1047,80 +1047,79 @@
       </div>
     </footer>
     <!-- end footer -->
-  </body>
 
-  <script>
-    const tokent =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
+    <script>
+      const tokent =
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
 
-    let isDragging = false;
-    let startX;
-    let scrollPosition; // Renamed for clarity
+      let isDragging = false;
+      let startX;
+      let scrollPosition; // Renamed for clarity
 
-    function enableDragging(elementId) {
-      const element = document.getElementById(elementId);
+      function enableDragging(elementId) {
+        const element = document.getElementById(elementId);
 
-      element.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        startX = e.pageX - element.offsetLeft; // Get initial position
-        scrollPosition = element.scrollLeft; // Store current scroll position
-        element.style.cursor = "grabbing"; // Change cursor to grabbing
-      });
+        element.addEventListener("mousedown", (e) => {
+          isDragging = true;
+          startX = e.pageX - element.offsetLeft; // Get initial position
+          scrollPosition = element.scrollLeft; // Store current scroll position
+          element.style.cursor = "grabbing"; // Change cursor to grabbing
+        });
 
-      element.addEventListener("mouseleave", () => {
-        isDragging = false; // Stop dragging when leaving the element
-        element.style.cursor = "grab"; // Reset cursor
-      });
+        element.addEventListener("mouseleave", () => {
+          isDragging = false; // Stop dragging when leaving the element
+          element.style.cursor = "grab"; // Reset cursor
+        });
 
-      element.addEventListener("mouseup", () => {
-        isDragging = false; // Stop dragging on mouseup
-        element.style.cursor = "grab"; // Reset cursor
-      });
+        element.addEventListener("mouseup", () => {
+          isDragging = false; // Stop dragging on mouseup
+          element.style.cursor = "grab"; // Reset cursor
+        });
 
-      element.addEventListener("mousemove", (e) => {
-        if (!isDragging) return; // Exit if not dragging
-        e.preventDefault(); // Prevent text selection
-        const x = e.pageX - element.offsetLeft; // Get current position
-        const walk = (x - startX) * 2; // Calculate how far to scroll (adjust speed)
-        element.scrollLeft = scrollPosition - walk; // Set new scroll position
-      });
-    }
+        element.addEventListener("mousemove", (e) => {
+          if (!isDragging) return; // Exit if not dragging
+          e.preventDefault(); // Prevent text selection
+          const x = e.pageX - element.offsetLeft; // Get current position
+          const walk = (x - startX) * 2; // Calculate how far to scroll (adjust speed)
+          element.scrollLeft = scrollPosition - walk; // Set new scroll position
+        });
+      }
 
-    function updateCartCount() {
-      const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-      const cartCount = cart.length;
-      document.getElementById("cartCount").textContent = cartCount;
-      document.getElementById("cartCount2").textContent = cartCount;
-    }
+      function updateCartCount() {
+        const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        const cartCount = cart.length;
+        document.getElementById("cartCount").textContent = cartCount;
+        document.getElementById("cartCount2").textContent = cartCount;
+      }
 
-    // Call this function to update the cart count on page load
-    updateCartCount();
+      // Call this function to update the cart count on page load
+      updateCartCount();
 
-    // Function to fetch and display products for Corporate Stationeries
-    const getCorporateStationeries = async () => {
-      const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-      try {
-        const response = await axios.get(
-          `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetProductByCatgory/1`,
-          {
-            headers: {
-              Authorization: tokent,
-            },
-          }
-        );
-        let productHtml = "";
-
-        response.data.forEach((product) => {
-          const existingProduct = cart.find(
-            (item) => item.id === product.Product_Details_Id
+      // Function to fetch and display products for Corporate Stationeries
+      const getCorporateStationeries = async () => {
+        const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        try {
+          const response = await axios.get(
+            `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetProductByCatgory/1`,
+            {
+              headers: {
+                Authorization: tokent,
+              },
+            }
           );
-          const quantity = existingProduct ? existingProduct.quantity : 1;
-          const truncatedDescription =
-            product.Product_Details_Description.length > 20
-              ? product.Product_Details_Description.slice(0, 20) + "..."
-              : product.Product_Details_Description;
+          let productHtml = "";
 
-          productHtml += `
+          response.data.forEach((product) => {
+            const existingProduct = cart.find(
+              (item) => item.id === product.Product_Details_Id
+            );
+            const quantity = existingProduct ? existingProduct.quantity : 1;
+            const truncatedDescription =
+              product.Product_Details_Description.length > 20
+                ? product.Product_Details_Description.slice(0, 20) + "..."
+                : product.Product_Details_Description;
+
+            productHtml += `
             <div class="product-card p-3 mb-3 bg-white rounded">
               <img src="http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/Public/${product.Image}" 
                    class="product-image" alt="${product.Product_Details_Description}" />
@@ -1137,39 +1136,39 @@
                                           '${product.Image}')">Add to Cart</button>
               </div>
             </div>`;
-        });
+          });
 
-        document.getElementById("products3").innerHTML = productHtml;
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+          document.getElementById("products3").innerHTML = productHtml;
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      };
 
-    // Function to fetch and display products for Housekeeping Products
-    const getHousekeepingProducts = async () => {
-      const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-      try {
-        const response = await axios.get(
-          `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetProductByCatgory/2`,
-          {
-            headers: {
-              Authorization: tokent,
-            },
-          }
-        );
-        let productHtml = "";
-
-        response.data.forEach((product) => {
-          const existingProduct = cart.find(
-            (item) => item.id === product.Product_Details_Id
+      // Function to fetch and display products for Housekeeping Products
+      const getHousekeepingProducts = async () => {
+        const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        try {
+          const response = await axios.get(
+            `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetProductByCatgory/2`,
+            {
+              headers: {
+                Authorization: tokent,
+              },
+            }
           );
-          const quantity = existingProduct ? existingProduct.quantity : 1;
-          const truncatedDescription =
-            product.Product_Details_Description.length > 20
-              ? product.Product_Details_Description.slice(0, 20) + "..."
-              : product.Product_Details_Description;
+          let productHtml = "";
 
-          productHtml += `
+          response.data.forEach((product) => {
+            const existingProduct = cart.find(
+              (item) => item.id === product.Product_Details_Id
+            );
+            const quantity = existingProduct ? existingProduct.quantity : 1;
+            const truncatedDescription =
+              product.Product_Details_Description.length > 20
+                ? product.Product_Details_Description.slice(0, 20) + "..."
+                : product.Product_Details_Description;
+
+            productHtml += `
             <div class="product-card p-3 mb-3 bg-white rounded">
               <img src="http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/Public/${product.Image}" 
                    class="product-image" alt="${product.Product_Details_Description}" />
@@ -1186,39 +1185,39 @@
                                           '${product.Image}')">Add to Cart</button>
               </div>
             </div>`;
-        });
+          });
 
-        document.getElementById("products4").innerHTML = productHtml;
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+          document.getElementById("products4").innerHTML = productHtml;
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      };
 
-    // Function to fetch and display products for Corporate Stationeries (duplicate category)
-    const getCorporateStationeries2 = async () => {
-      const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-      try {
-        const response = await axios.get(
-          `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetProductByCatgory/3`,
-          {
-            headers: {
-              Authorization: tokent,
-            },
-          }
-        );
-        let productHtml = "";
-
-        response.data.forEach((product) => {
-          const existingProduct = cart.find(
-            (item) => item.id === product.Product_Details_Id
+      // Function to fetch and display products for Corporate Stationeries (duplicate category)
+      const getCorporateStationeries2 = async () => {
+        const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        try {
+          const response = await axios.get(
+            `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetProductByCatgory/3`,
+            {
+              headers: {
+                Authorization: tokent,
+              },
+            }
           );
-          const quantity = existingProduct ? existingProduct.quantity : 1;
-          const truncatedDescription =
-            product.Product_Details_Description.length > 20
-              ? product.Product_Details_Description.slice(0, 20) + "..."
-              : product.Product_Details_Description;
+          let productHtml = "";
 
-          productHtml += `
+          response.data.forEach((product) => {
+            const existingProduct = cart.find(
+              (item) => item.id === product.Product_Details_Id
+            );
+            const quantity = existingProduct ? existingProduct.quantity : 1;
+            const truncatedDescription =
+              product.Product_Details_Description.length > 20
+                ? product.Product_Details_Description.slice(0, 20) + "..."
+                : product.Product_Details_Description;
+
+            productHtml += `
             <div class="product-card p-3 mb-3 bg-white rounded">
               <img src="http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/Public/${product.Image}" 
                    class="product-image" alt="${product.Product_Details_Description}" />
@@ -1235,120 +1234,119 @@
                                           '${product.Image}')">Add to Cart</button>
               </div>
             </div>`;
+          });
+
+          document.getElementById("products5").innerHTML = productHtml;
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      };
+
+      // Function to add product to the cart
+      function addToCart(id, name, price, Image) {
+        const quantityInput = document.getElementById(`quantity-${id}`);
+        const quantity = parseInt(quantityInput.value);
+
+        // Validate quantity
+        if (isNaN(quantity) || quantity < 1) {
+          showToast("Quantity must be at least 1!", "red");
+          quantityInput.value = 1; // Reset to 1 if invalid
+          return;
+        }
+
+        const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        const existingProduct = cart.find((item) => item.id === id);
+
+        if (existingProduct) {
+          existingProduct.quantity = quantity;
+        } else {
+          cart.push({
+            id,
+            name,
+            price,
+            quantity,
+            Image,
+          });
+        }
+
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+        showToast(`${name} added to cart with quantity ${quantity}!`, "green"); // Show success toast
+        updateCartCount();
+      }
+
+      // Horizontal scrolling with buttons
+      function scrollLeft(productId) {
+        const scrollableProducts = document.getElementById(productId);
+        scrollableProducts.scrollBy({
+          left: -200,
+          behavior: "smooth",
+        });
+      }
+
+      function scrollRight(productId) {
+        const scrollableProducts = document.getElementById(productId);
+        scrollableProducts.scrollBy({
+          left: 200,
+          behavior: "smooth",
+        });
+      }
+
+      // Function to show Bootstrap Toast
+      function showToast(message, color) {
+        document.getElementById("toast-body").innerText = message;
+        document.getElementById("toast-title").innerText =
+          color === "red" ? "Error" : "Added to Cart";
+        document
+          .getElementById("toast")
+          .classList.remove("bg-success", "bg-danger");
+        document
+          .getElementById("toast")
+          .classList.add(color === "red" ? "bg-danger" : "bg-success");
+        $(".toast").toast({ delay: 3000 });
+        $(".toast").toast("show");
+      }
+
+      // Fetch products when the page loads
+      window.onload = () => {
+        getCorporateStationeries();
+        getHousekeepingProducts();
+        getCorporateStationeries2();
+
+        enableDragging("products3"); // Corporate Stationeries
+        enableDragging("products4"); // Housekeeping Products
+        enableDragging("products5"); // Corporate Stationeries Duplicate
+      };
+    </script>
+    <!-- Javascript files-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const tokent2 =
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
+
+      const api_url =
+        "http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetallActiveMainCategory";
+
+      // Defining async function
+      async function getapi(url) {
+        // Storing response
+        const response = await fetch(url, {
+          headers: {
+            Authorization: tokent2,
+          },
         });
 
-        document.getElementById("products5").innerHTML = productHtml;
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+        // Storing data in form of JSON
+        var data = await response.json();
+        console.log(data);
 
-    // Function to add product to the cart
-    function addToCart(id, name, price, Image) {
-      const quantityInput = document.getElementById(`quantity-${id}`);
-      const quantity = parseInt(quantityInput.value);
-
-      // Validate quantity
-      if (isNaN(quantity) || quantity < 1) {
-        showToast("Quantity must be at least 1!", "red");
-        quantityInput.value = 1; // Reset to 1 if invalid
-        return;
+        show(data);
       }
 
-      const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-      const existingProduct = cart.find((item) => item.id === id);
+      // Calling that async function
+      getapi(api_url);
 
-      if (existingProduct) {
-        existingProduct.quantity = quantity;
-      } else {
-        cart.push({
-          id,
-          name,
-          price,
-          quantity,
-          Image,
-        });
-      }
-
-      sessionStorage.setItem("cart", JSON.stringify(cart));
-      showToast(`${name} added to cart with quantity ${quantity}!`, "green"); // Show success toast
-      updateCartCount();
-    }
-
-    // Horizontal scrolling with buttons
-    function scrollLeft(productId) {
-      const scrollableProducts = document.getElementById(productId);
-      scrollableProducts.scrollBy({
-        left: -200,
-        behavior: "smooth",
-      });
-    }
-
-    function scrollRight(productId) {
-      const scrollableProducts = document.getElementById(productId);
-      scrollableProducts.scrollBy({
-        left: 200,
-        behavior: "smooth",
-      });
-    }
-
-    // Function to show Bootstrap Toast
-    function showToast(message, color) {
-      document.getElementById("toast-body").innerText = message;
-      document.getElementById("toast-title").innerText =
-        color === "red" ? "Error" : "Added to Cart";
-      document
-        .getElementById("toast")
-        .classList.remove("bg-success", "bg-danger");
-      document
-        .getElementById("toast")
-        .classList.add(color === "red" ? "bg-danger" : "bg-success");
-      $(".toast").toast({ delay: 3000 });
-      $(".toast").toast("show");
-    }
-
-    // Fetch products when the page loads
-    window.onload = () => {
-      getCorporateStationeries();
-      getHousekeepingProducts();
-      getCorporateStationeries2();
-
-      enableDragging("products3"); // Corporate Stationeries
-      enableDragging("products4"); // Housekeeping Products
-      enableDragging("products5"); // Corporate Stationeries Duplicate
-    };
-  </script>
-  <!-- Javascript files-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const tokent2 =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
-
-    const api_url =
-      "http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetallActiveMainCategory";
-
-    // Defining async function
-    async function getapi(url) {
-      // Storing response
-      const response = await fetch(url, {
-        headers: {
-          Authorization: tokent2,
-        },
-      });
-
-      
-      // Storing data in form of JSON
-      var data = await response.json();
-      console.log(data);
-
-      show(data);
-    }
-
-    // Calling that async function
-    getapi(api_url);
-
-    function show(data) {
-      let tab = `<ul class="dropdown-menu" id="maincategory" a   ria-labelledby="navbarDropdownMenuLink">
+      function show(data) {
+        let tab = `<ul class="dropdown-menu" id="maincategory" a   ria-labelledby="navbarDropdownMenuLink">
          <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" ></a>
             <ul class="dropdown-menu">
                                               <li><a class="dropdown-item" target="_blank" href="images/ListOfStationery.pdf">Copier Paper</a></li>
@@ -1369,89 +1367,89 @@
          <li>
          </ul>`;
 
-      for (const r of data) {
-        tab += `<li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" value=${r.MainCategory_Id} onmouseover="getsubmenu(${r.MainCategory_Id})" >${r.MainCategory_Description}</a>
+        for (const r of data) {
+          tab += `<li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" value=${r.MainCategory_Id} onmouseover="getsubmenu(${r.MainCategory_Id})" >${r.MainCategory_Description}</a>
          <ul class="dropdown-menu text-capitalize" id="sucategory${r.MainCategory_Id}">
                                             
                                           </ul>
    
          </li>
       </ul>`;
+        }
+        console.log(data, "test");
+        // Setting innerHTML as tab variable
+        document.getElementById("maincategory").innerHTML = tab;
       }
-      console.log(data, "test");
-      // Setting innerHTML as tab variable
-      document.getElementById("maincategory").innerHTML = tab;
-    }
 
-    const getsubmenu = async (id) => {
-      await axios
-        .get(
-          `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/Getonesub/${id}`,
-          {
-            headers: {
-              Authorization: tokent2,
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res.data, "datas");
+      const getsubmenu = async (id) => {
+        await axios
+          .get(
+            `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/Getonesub/${id}`,
+            {
+              headers: {
+                Authorization: tokent2,
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res.data, "datas");
 
-          let tab = ``;
-          for (const r of res.data) {
-            tab += ` <li><a class="dropdown-item text-capitalize" href="products.html" onclick="productid(${r.Category_Id})">${r.Category_Description}</a></li>`;
-          }
+            let tab = ``;
+            for (const r of res.data) {
+              tab += ` <li><a class="dropdown-item text-capitalize" href="products.html" onclick="productid(${r.Category_Id})">${r.Category_Description}</a></li>`;
+            }
 
-          // Setting innerHTML as tab variable
-          document.getElementById(`sucategory${id}`).innerHTML = tab;
+            // Setting innerHTML as tab variable
+            document.getElementById(`sucategory${id}`).innerHTML = tab;
+          });
+      };
+
+      const productid = (id) => {
+        sessionStorage.setItem("productid", id);
+      };
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+      function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+    </script>
+    <script>
+      const tokent3 =
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
+
+      const api_url2 =
+        "http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetallActiveMainCategory";
+
+      // Fetch categories and render them in the sidebar
+      async function getCategories(url) {
+        const response = await fetch(url, {
+          headers: {
+            Authorization: tokent3,
+          },
         });
-    };
+        const data = await response.json();
+        renderCategories(data);
+      }
 
-    const productid = (id) => {
-      sessionStorage.setItem("productid", id);
-    };
-  </script>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/jquery-3.0.0.min.js"></script>
-  <!-- sidebar -->
-  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-  <script src="js/custom.js"></script>
-  <script>
-    function openNav() {
-      document.getElementById("mySidebar").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
-    }
+      // Function to render categories and their subcategories
+      function renderCategories(data) {
+        let categoryHTML = "";
 
-    function closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
-      document.getElementById("main").style.marginLeft = "0";
-    }
-  </script>
-  <script>
-    const tokent3 =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
-
-    const api_url2 =
-      "http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/GetallActiveMainCategory";
-
-    // Fetch categories and render them in the sidebar
-    async function getCategories(url) {
-      const response = await fetch(url, {
-        headers: {
-          Authorization: tokent3,
-        },
-      });
-      const data = await response.json();
-      renderCategories(data);
-    }
-
-    // Function to render categories and their subcategories
-    function renderCategories(data) {
-      let categoryHTML = "";
-
-      data.forEach((category) => {
-        categoryHTML += `
+        data.forEach((category) => {
+          categoryHTML += `
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-toggle="collapse" href="#category-${category.MainCategory_Id}" aria-expanded="false" aria-controls="category-${category.MainCategory_Id}">
           ${category.MainCategory_Description} <i class="fa-solid fa-caret-down"></i>
@@ -1461,42 +1459,44 @@
           <ul class="list-unstyled" id="subcategory-${category.MainCategory_Id}"></ul>
         </div>
       </li>`;
-      });
+        });
 
-      document.getElementById("sidebar-category-list").innerHTML = categoryHTML;
+        document.getElementById("sidebar-category-list").innerHTML =
+          categoryHTML;
 
-      // Load subcategories for each category
-      data.forEach((category) => loadSubcategories(category.MainCategory_Id));
-    }
+        // Load subcategories for each category
+        data.forEach((category) => loadSubcategories(category.MainCategory_Id));
+      }
 
-    // Function to fetch subcategories based on category ID
-    async function loadSubcategories(categoryId) {
-      const response = await axios.get(
-        `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/Getonesub/${categoryId}`,
-        {
-          headers: {
-            Authorization: tokent3,
-          },
-        }
-      );
-      const subcategories = response.data;
+      // Function to fetch subcategories based on category ID
+      async function loadSubcategories(categoryId) {
+        const response = await axios.get(
+          `http://targettest.asktek.net/target.ankita.adminpanel.webapi/api/Getonesub/${categoryId}`,
+          {
+            headers: {
+              Authorization: tokent3,
+            },
+          }
+        );
+        const subcategories = response.data;
 
-      let subcategoryHTML = "";
-      subcategories.forEach((subcategory) => {
-        subcategoryHTML += `<li><a class="dropdown-item" href="products.html" onclick="selectProduct(${subcategory.Category_Id})">${subcategory.Category_Description} </a></li>`;
-      });
+        let subcategoryHTML = "";
+        subcategories.forEach((subcategory) => {
+          subcategoryHTML += `<li><a class="dropdown-item" href="products.html" onclick="selectProduct(${subcategory.Category_Id})">${subcategory.Category_Description} </a></li>`;
+        });
 
-      document.getElementById(`subcategory-${categoryId}`).innerHTML =
-        subcategoryHTML;
-    }
+        document.getElementById(`subcategory-${categoryId}`).innerHTML =
+          subcategoryHTML;
+      }
 
-    // Function to store selected product ID in sessionStorage and redirect
-    function selectProduct(subcategoryId) {
-      sessionStorage.setItem("productid", subcategoryId);
-      window.location.href = "products.html"; // Redirect to products page
-    }
+      // Function to store selected product ID in sessionStorage and redirect
+      function selectProduct(subcategoryId) {
+        sessionStorage.setItem("productid", subcategoryId);
+        window.location.href = "products.html"; // Redirect to products page
+      }
 
-    // Initialize categories on page load
-    getCategories(api_url2);
-  </script>
+      // Initialize categories on page load
+      getCategories(api_url2);
+    </script>
+  </body>
 </html>

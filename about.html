@@ -907,10 +907,10 @@
       async function getapi(url) {
         // Storing response
         const response = await fetch(url, {
-        headers: {
-          Authorization: tokent,
-        },
-      });
+          headers: {
+            Authorization: tokent,
+          },
+        });
 
         // Storing data in form of JSON
         var data = await response.json();
@@ -1014,10 +1014,10 @@
       // Fetch categories and render them in the sidebar
       async function getCategories(url) {
         const response = await fetch(url, {
-        headers: {
-          Authorization: tokent2,
-        },
-      });
+          headers: {
+            Authorization: tokent2,
+          },
+        });
         const data = await response.json();
         renderCategories(data);
       }

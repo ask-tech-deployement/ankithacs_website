@@ -172,7 +172,14 @@
 .count-position {
   position: absolute;
   left: 49px;
-  background-color: lawngreen;
+  background-color: lawngreen !important;
+  color: black !important;
+}
+
+.count-position2 {
+  position: absolute;
+  left: 63px;
+  background-color: lawngreen !important;
   color: black !important;
 }
 
