@@ -150,8 +150,8 @@
     </div>
     <!-- end loader -->
 
-     <!-- Top Bar -->
-     <div class="bg-dark text-white py-2">
+    <!-- Top Bar -->
+    <div class="bg-dark text-white py-2">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-12 col-sm-12 text-md-end text-center">
@@ -195,7 +195,7 @@
           <!-- Full width container -->
           <div class="row align-items-center justify-content-between">
             <!-- Logo -->
-            <div class="col-6 col-md-2 text-start">
+            <div class="col-3 col-md-4 text-start">
               <a href="index.html" class="logo my-1">
                 <img
                   src="images/ankita/acs3.png"
@@ -206,7 +206,7 @@
               </a>
             </div>
 
-            <div class="col-6 col-md-10 d-flex justify-content-end">
+            <div class="col-9 col-md-8 d-flex justify-content-end">
               <nav class="navbar navbar-expand-lg navbar-dark text-primary">
                 <a href="cart.html" class="logo my-1 d-block d-lg-none">
                   <div>
@@ -1383,14 +1383,11 @@
 
       const getsubmenu = async (id) => {
         await axios
-          .get(
-            `https://live.asktek.net/Ankita_api/api/Getonesub/${id}`,
-            {
-              headers: {
-                Authorization: tokent2,
-              },
-            }
-          )
+          .get(`https://live.asktek.net/Ankita_api/api/Getonesub/${id}`, {
+            headers: {
+              Authorization: tokent2,
+            },
+          })
           .then((res) => {
             console.log(res.data, "datas");
 
