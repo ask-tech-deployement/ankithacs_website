@@ -295,17 +295,6 @@
                       >
                     </li>
 
-                    <li class="nav-item ml-4">
-                      <a class="" href="cart.html">
-                        <button type="button" class="btn btn-primary">
-                          Cart
-                          <span class="badge badge-dark" id="cartCount2"
-                            >0</span
-                          >
-                        </button>
-                      </a>
-                    </li>
-
                     <li class="nav-item px-3">
                       <a
                         href="https://live.asktek.net/ankitacs/"
@@ -315,6 +304,21 @@
                       >
                     </li>
                   </ul>
+                  <a href="cart.html" class="logo d-none d-lg-block">
+                    <div class="position-relative">
+                      <img
+                        src="images/ankita/cart.png"
+                        alt="ACS Logo"
+                        class="img-fluid"
+                        style="max-height: 50px; max-width: 50px"
+                      />
+                      <span
+                        class="badge badge-dark count-position3"
+                        id="cartCount2"
+                        >0</span
+                      >
+                    </div>
+                  </a>
                 </div>
 
                 <!-- Sidebar and content -->
@@ -338,7 +342,6 @@
                       <span>Products</span>
                       <i class="fa-solid fa-caret-down"></i>
                       <i class="bi bi-caret-down-fill"></i>
-                      <!-- Bootstrap dropdown icon -->
                     </a>
                     <div id="productDropdown" class="collapse">
                       <div class="accordion" id="categoryAccordion">
@@ -353,13 +356,7 @@
                   <a href="contact.html">Contact Us</a>
                   <a href="enquiryus.html">Enquiry</a>
                   <a href="images/RR Brochure.pdf">Brochure</a>
-                  <a href="cart.html"
-                    >Cart
-                    <span class="badge bg-secondary" id="cartCount">0</span></a
-                  >
-                  <a
-                    href="https://live.asktek.net/ankitacs/"
-                    target="_blank"
+                  <a href="https://live.asktek.net/ankitacs/" target="_blank"
                     >Login</a
                   >
                 </div>
@@ -1034,8 +1031,14 @@
             </div>
           </div>
           <p class="text-center mt-4" style="font-size: small; color: #fafafa">
-            © Copyright 2024. Ankita Computers & Stationers. All rights
-            reserved. | Designed and developed by
+            © Copyright 2024.
+            <a
+              href="https://live.asktek.net/admin_ankitacs"
+              target="_blank"
+              style="text-decoration: none; color: skyblue"
+              >Ankita Computers & Stationers.
+            </a>
+            All rights reserved. | Designed and developed by
             <a
               href="https://asktek.net/"
               target="_blank"
@@ -1044,7 +1047,7 @@
             >
           </p>
         </div>
-      </div>
+      </div>  
     </footer>
     <!-- end footer -->
 
@@ -1100,7 +1103,7 @@
         const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
         try {
           const response = await axios.get(
-            `https://live.asktek.net/Ankita_api/api/GetProductByCatgory/1`,
+            `https://live.asktek.net/admin_ankitacs_api/api/GetProductByCatgory/1`,
             {
               headers: {
                 Authorization: tokent,
@@ -1121,7 +1124,7 @@
 
             productHtml += `
             <div class="product-card p-3 mb-3 bg-white rounded">
-              <img src="https://live.asktek.net/Ankita_api/api/Public/${product.Image}" 
+              <img src="https://live.asktek.net/admin_ankitacs_api/api/Public/${product.Image}" 
                    class="product-image" alt="${product.Product_Details_Description}" />
               <div class="card-body">
                 <p class="product-description" title="${product.Product_Details_Description}">
@@ -1149,7 +1152,7 @@
         const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
         try {
           const response = await axios.get(
-            `https://live.asktek.net/Ankita_api/api/GetProductByCatgory/2`,
+            `https://live.asktek.net/admin_ankitacs_api/api/GetProductByCatgory/2`,
             {
               headers: {
                 Authorization: tokent,
@@ -1170,7 +1173,7 @@
 
             productHtml += `
             <div class="product-card p-3 mb-3 bg-white rounded">
-              <img src="https://live.asktek.net/Ankita_api/api/Public/${product.Image}" 
+              <img src="https://live.asktek.net/admin_ankitacs_api/api/Public/${product.Image}" 
                    class="product-image" alt="${product.Product_Details_Description}" />
               <div class="card-body">
                 <p class="product-description" title="${product.Product_Details_Description}">
@@ -1198,7 +1201,7 @@
         const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
         try {
           const response = await axios.get(
-            `https://live.asktek.net/Ankita_api/api/GetProductByCatgory/3`,
+            `https://live.asktek.net/admin_ankitacs_api/api/GetProductByCatgory/3`,
             {
               headers: {
                 Authorization: tokent,
@@ -1219,7 +1222,7 @@
 
             productHtml += `
             <div class="product-card p-3 mb-3 bg-white rounded">
-              <img src="https://live.asktek.net/Ankita_api/api/Public/${product.Image}" 
+              <img src="https://live.asktek.net/admin_ankitacs_api/api/Public/${product.Image}" 
                    class="product-image" alt="${product.Product_Details_Description}" />
               <div class="card-body">
                 <p class="product-description" title="${product.Product_Details_Description}">
@@ -1324,7 +1327,7 @@
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
 
       const api_url =
-        "https://live.asktek.net/Ankita_api/api/GetallActiveMainCategory";
+        "https://live.asktek.net/admin_ankitacs_api/api/GetallActiveMainCategory";
 
       // Defining async function
       async function getapi(url) {
@@ -1383,11 +1386,14 @@
 
       const getsubmenu = async (id) => {
         await axios
-          .get(`https://live.asktek.net/Ankita_api/api/Getonesub/${id}`, {
-            headers: {
-              Authorization: tokent2,
-            },
-          })
+          .get(
+            `https://live.asktek.net/admin_ankitacs_api/api/Getonesub/${id}`,
+            {
+              headers: {
+                Authorization: tokent2,
+              },
+            }
+          )
           .then((res) => {
             console.log(res.data, "datas");
 
@@ -1428,7 +1434,7 @@
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJldmVudGxpc3QiOlt7IlVzZXJJRCI6IjEiLCJMb2dpbkNvZGUiOiIwMSIsIkxvZ2luTmFtZSI6IkFkbWluIiwiRW1haWxJZCI6ImFkbWluQGdtYWlsLmNvbSIsIlVzZXJUeXBlIjoiQURNSU4ifV0sImlhdCI6MTYzODM1NDczMX0.ZW6zEHIXTxfT-QWEzS6-GuY7bRupf2Jc_tp4fXIRabQ";
 
       const api_url2 =
-        "https://live.asktek.net/Ankita_api/api/GetallActiveMainCategory";
+        "https://live.asktek.net/admin_ankitacs_api/api/GetallActiveMainCategory";
 
       // Fetch categories and render them in the sidebar
       async function getCategories(url) {
@@ -1468,7 +1474,7 @@
       // Function to fetch subcategories based on category ID
       async function loadSubcategories(categoryId) {
         const response = await axios.get(
-          `https://live.asktek.net/Ankita_api/api/Getonesub/${categoryId}`,
+          `https://live.asktek.net/admin_ankitacs_api/api/Getonesub/${categoryId}`,
           {
             headers: {
               Authorization: tokent3,

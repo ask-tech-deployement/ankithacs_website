@@ -200,6 +200,19 @@
   color: black !important;
 }
 
+.count-position3 {
+  position: absolute;
+  left: 35px;
+  background-color: lawngreen !important;
+  color: black !important;
+}
+
+.cart-icon
+{
+  max-width: 50px;
+  max-height: 50px;
+}
+
 /* Sidebar styles */
 #mySidebar {
   height: 100%;
