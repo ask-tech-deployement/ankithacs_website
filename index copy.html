@@ -512,7 +512,7 @@
       <div class="scrollable-wrapper position-relative">
         <button
           class="scroll-arrow left-arrow bg-success-subtle"
-          onclick="scrollElementLeft('products3')"
+          onclick="scrollLeft('products3')"
         >
           &#10094;
         </button>
@@ -550,7 +550,7 @@
       <div class="scrollable-wrapper position-relative">
         <button
           class="scroll-arrow left-arrow bg-success-subtle"
-          onclick="scrollElementLeft('products4')"
+          onclick="scrollLeft('products4')"
         >
           &#10094;
         </button>
@@ -596,7 +596,7 @@
       <div class="scrollable-wrapper position-relative">
         <button
           class="scroll-arrow left-arrow bg-success-subtle"
-          onclick="scrollElementLeft('products5')"
+          onclick="scrollLeft('products5')"
         >
           &#10094;
         </button>
@@ -1047,7 +1047,7 @@
             >
           </p>
         </div>
-      </div>
+      </div>  
     </footer>
     <!-- end footer -->
 
@@ -1277,22 +1277,8 @@
         updateCartCount();
       }
 
-      function scrollElementLeft(elementId) {
-        console.log("Left scroll button clicked");
-        const element = document.getElementById(elementId);
-        if (!element) {
-          console.error(`Element with ID ${elementId} not found`);
-          return;
-        }
-        element.scrollBy({
-          left: -200,
-          behavior: "smooth",
-        });
-      }
-
       // Horizontal scrolling with buttons
       function scrollLeft(productId) {
-        console.log("scrollLeft called");
         const scrollableProducts = document.getElementById(productId);
         scrollableProducts.scrollBy({
           left: -200,
@@ -1301,7 +1287,6 @@
       }
 
       function scrollRight(productId) {
-        console.log("scrollRight called");
         const scrollableProducts = document.getElementById(productId);
         scrollableProducts.scrollBy({
           left: 200,
